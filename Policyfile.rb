@@ -10,7 +10,7 @@ name 'ice_motd'
 default_source :supermarket
 
 # run_list: chef-client will run these recipes in the order specified.
-run_list 'ice_motd::default'
+run_list 'ice_motd'
 
 # Specify a custom source for a single cookbook:
 cookbook 'ice_motd', path: '.'
