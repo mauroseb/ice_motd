@@ -1,0 +1,36 @@
+driver:
+  name: ec2
+  region: eu-central-1
+  subnet_id: subnet-0870933680b5f2c8a
+  security_group_ids: sg-00160fd2c0e742423
+  aws_ssh_key_id: mauro
+  instance_type: t2.micro
+  retryable_tries: 120
+  associate_public_ip: true
+  ebs_optimized: true
+  shared_credentials_profile: chef-mauro
+  skip_cost_warning: true
+  tags:
+    Created-By: Test Kitchen
+    X-Contact: mauro.oddi@progress.com
+    X-Dept: CA
+
+transport:
+  ssh_key: ~/.ssh/id_rsa_aws
+  connection_timeout: 10
+  connection_retries: 5
+  username: centos
+
+platforms:
+- name: centos-8
+  driver:
+    tags:
+      Name: mauro-centos-8-kitchen
+
+suites:
+- name: default
+  run_list:
+  - recipe[ice_motd]
+  verifier:
+    inspec_tests:
+    - test/integration/default

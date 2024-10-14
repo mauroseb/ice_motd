@@ -1,0 +1,49 @@
+*********************************************************************
+   <%= node['fqdn'].rjust(34) %>
+*********************************************************************
+*                                                                   *
+*   This system is for the use of authorized users only. Usage of   *
+*   this system may be monitored and recorded by system personnel.  *
+*   Anyone using this system expressly consents to such monitoring  *
+*   and is advised that if such monitoring reveals possible         *
+*   evidence of criminal activity, system personnel may provide     *
+*   the evidence from such monitoring to law enforcement officials. *
+*                                                                   *
+*********************************************************************
+
+                  THIS NODE IS MANAGED BY CHEF.
+            DO NOT MAKE ANY CHANGES TO THE LIVE SYSTEM.
+
+  CHEF SERVER     :  <%= node['chef_server_url'] %>
+  CHEF VERSION    :  <%= node['chef_packages']['chef']['version'] %>
+  LAST CLIENT RUN :  <%= Time.at(node['ohai_time']) %>
+  IP ADDRESS      :  <%= node['ipaddress'] %>
+  UPTIME          :  <%= node['uptime'] %>
+  ENVIRONMENT     :  <% if node['environment'].downcase == 'production' %>[1;31m<% else %>[1;32m<% end %><%= node['environment'].upcase %>[0m
+  OS VERSION      :  <%= node['os_release']['pretty_name'] %>
+  NODE ARCH       :  <%= node['kernel']['machine'] %>
+  KERNEL          :  <%= node['kernel']['release'] %>
+<% if node['dmi'].attribute?('bios') %>
+  HARDWARE        :  <%= node['dmi']['bios']['vendor'] %>
+<% end %>
+
+<% if node.attribute?('ec2') %>
+*********************************************************************
+  AWS EC2 INSTANCE DETAILS
+
+  IMAGE           :  <%= node['ec2']['ami_id'] %>
+  INSTANCE        :  <%= node['ec2']['instance_id'] %>
+  SIZE            :  <%= node['ec2']['instance_type'] %>
+  PUBLIC IP       :  <%= node['ec2']['public_ipv4'] %>
+  PRIVATE IP      :  <%= node['ec2']['local_ipv4'] %>
+
+<% end %>
+<% if node['ice_motd']['footer'].kind_of?(Array) %>
+  <% if not node['ice_motd']['footer'].empty? %>
+*********************************************************************
+    <% node['ice_motd']['footer'].each do |line| -%>
+  <%= line %>
+    <% end -%>
+*********************************************************************
+  <% end %>
+<% end %>
