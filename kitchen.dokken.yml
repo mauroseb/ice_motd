@@ -1,0 +1,35 @@
+driver:
+  name: dokken
+  privileged: true
+  chef_version: <%= ENV['CHEF_VERSION'] || 'current' %>
+  chef_license: accept-no-persist
+  api_retries: 3
+
+provisioner:
+  name: dokken
+
+transport:
+  name: dokken
+  login_command: podman
+
+verifier:
+  name: inspec
+
+platforms:
+- name: centos-8
+  driver:
+    image: dokken/centos-8
+
+suites:
+- name: default
+  run_list:
+  - recipe[ice_motd]
+  verifier:
+    inspec_tests:
+    - test/integration/default
+  lifecycle:
+    pre_create:
+    - podman create --name chef-<%= ENV['CHEF_VERSION'] || 'current' %>  --replace docker.io/chef/chef:<%= ENV['CHEF_VERSION'] || 'current' %> sh
+    - podman start chef-<%= ENV['CHEF_VERSION'] || 'current' %>
+    post_destroy:
+    - podman volume prune -f
