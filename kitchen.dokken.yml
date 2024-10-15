@@ -33,3 +33,7 @@ suites:
     - podman start chef-<%= ENV['CHEF_VERSION'] || 'current' %>
     post_destroy:
     - podman volume prune -f
+  attributes:
+     chef_server_url: 'infra-01.a2-01.local'
+     environment: 'Production'
+
