@@ -1,0 +1,64 @@
+name: ice_motd CI 🚀
+on:
+  pull_request:
+  push:
+    branches:
+    - main
+
+jobs:
+  ice_motd_full:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os:
+        - centos-8
+        suite:
+        - default
+    fail-fast: false
+    continue-on-error: true
+    steps:
+    - name: print event details
+      run: echo "New event created by user ${{ github.event.pull_request.user.login }}."
+
+    - name: check out code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: JSON lint
+      uses: actionshub/yamllint@main
+
+    - name: YAML lint
+      uses: actionshub/yamllint@main
+
+    - name: Markdown lint
+      uses: actionshub/markdownlint@main
+
+    - name: Chef install
+      uses: actionshub/chef-install@main
+      with:
+        channel: current
+        project: chef-workstation
+
+    - name: Cookbook lint
+      run: chef exec cookstyle --display-cop-names --extra-details .
+
+    - name: Run unit tests with ChefSpec
+      # uses: actionshub/chef-install@main
+      run: chef exec rspec .
+
+    - name: Run integration tests with Test-Kitchen Dokken
+      # run: chef exec kitchen test
+      uses: actionshub/test-kitchen@main
+      with:
+        suite: ${{ matrix.suite }}
+        os: ${{ matrix.os }}
+        action: converge
+      env:
+        CHEF_LICENSE: accept-no-persist
+        KITCHEN_YAML: kitchen.dokken.yml
+      continue-on-error: false
+
+    - name: Print job status
+      run: 'echo "Job Status: ${{ job.status }}."'
+
