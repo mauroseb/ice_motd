@@ -60,4 +60,3 @@ jobs:
 
     - name: Print job status
       run: 'echo "Job Status: ${{ job.status }}."'
-
