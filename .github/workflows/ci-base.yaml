@@ -40,7 +40,7 @@ jobs:
         project: chef-workstation
 
     - name: Cookbook lint
-      run: chef exec cookstyle --display-cop-names --extra-details .
+      run: chef exec cookstyle --display-cop-names --extra-details --chef-license accept .
 
     - name: Run unit tests with ChefSpec
       # uses: actionshub/chef-install@main
