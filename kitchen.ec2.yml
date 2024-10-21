@@ -1,3 +1,4 @@
+---
 driver:
   name: ec2
   region: eu-central-1
@@ -34,3 +35,6 @@ suites:
   verifier:
     inspec_tests:
     - test/integration/default
+  attributes:
+    chef_server_url: 'infra-01.a2-01.local'
+    environment: 'Production'

@@ -1,0 +1,45 @@
+name: ice_motd CD 🚀
+on:
+  pull_request:
+  push:
+    branches:
+    - main
+
+jobs:
+  ice_motd_cd:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os:
+        - centos-8
+        suite:
+        - default
+    fail-fast: false
+    continue-on-error: true
+    steps:
+    - name: print event details
+      run: echo "New event created by user ${{ github.event.pull_request.user.login }}."
+
+    - name: check out code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Publish to internal artifactory
+      #    - name: Send telegram alert
+      #      if: always()
+      #      uses: appleboy/telegram-action@master
+      #      with:
+      #        to: ${{ secrets.TELEGRAM_TO }}
+      #        token: ${{ secrets.TELEGRAM_TOKEN }}
+      #        message: |
+      #          *** ${{ github.actor }} created commit: ***
+      #          Commit message: ${{ github.event.commits[0].message }}
+      #          Repository: ${{ github.repository }}
+      #          Job Status: ${{ job.status }}
+      #          See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
+
+      run: knife artifactory share
+
+    - name: Deploy to Production Chef server in lab policy group
+      run: chef install ice-motd && chef push lab Policyfile.lock.json

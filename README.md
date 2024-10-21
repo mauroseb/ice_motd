@@ -11,15 +11,15 @@ Add the recipe ```recipe[ice_motd]``` to the run_list.
 ## ATTRIBUTES
 
 * __footer:__ set the footer of the /etc/motd file.
-  
-EXAMPLE
+
 ```ruby
+
    default['ice_motd']['footer'] = [
      'Footer sample line'
    ]
+
 ```
 
 ## TODO
-- Add Kitchen YAML for Azure and GCP.
 
-
+* Add Kitchen YAML for Azure and GCP.
