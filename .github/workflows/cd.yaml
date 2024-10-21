@@ -1,9 +1,8 @@
 name: ice_motd CD 🚀
 on:
-  pull_request:
   push:
     branches:
-    - main
+    - not-yet
 
 jobs:
   ice_motd_cd:
