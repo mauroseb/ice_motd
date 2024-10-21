@@ -1,4 +1,4 @@
-# ice_motd
+# Cookbook ice_motd
 
 ## DESCRIPTION
 
