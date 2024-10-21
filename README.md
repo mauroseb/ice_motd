@@ -1,4 +1,6 @@
-# Cookbook ice_motd
+# ice_motd Cookbook
+![CI](https://github.com/mauroseb/ice_motd/actions/workflows/ci-base.yml/badge.svg)
+![GitHub](https://img.shields.io/github/license/mauroseb/ice_motd)
 
 ## DESCRIPTION
 
