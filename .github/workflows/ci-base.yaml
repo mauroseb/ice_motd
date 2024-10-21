@@ -14,7 +14,6 @@ jobs:
         - centos-8
         suite:
         - default
-    fail-fast: false
     continue-on-error: true
     steps:
     - name: print event details
