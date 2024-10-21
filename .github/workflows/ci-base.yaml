@@ -25,7 +25,7 @@ jobs:
         fetch-depth: 0
 
     - name: JSON lint
-      uses: actionshub/yamllint@main
+      uses: actionshub/jsonlint@main
 
     - name: YAML lint
       uses: actionshub/yamllint@main
@@ -48,7 +48,7 @@ jobs:
       run: chef exec rspec .
       env:
         CHEF_LICENSE: accept-silent
-        
+
     - name: Run integration tests with Test-Kitchen Dokken
       # run: chef exec kitchen test
       uses: actionshub/test-kitchen@main
