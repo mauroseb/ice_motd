@@ -40,12 +40,15 @@ jobs:
         project: chef-workstation
 
     - name: Cookbook lint
-      run: chef exec cookstyle --display-cop-names --extra-details --chef-license accept .
+      run: chef exec cookstyle --display-cop-names --extra-details .
+      env:
+        CHEF_LICENSE: accept-silent
 
     - name: Run unit tests with ChefSpec
-      # uses: actionshub/chef-install@main
       run: chef exec rspec .
-
+      env:
+        CHEF_LICENSE: accept-silent
+        
     - name: Run integration tests with Test-Kitchen Dokken
       # run: chef exec kitchen test
       uses: actionshub/test-kitchen@main
