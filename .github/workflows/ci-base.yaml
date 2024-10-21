@@ -25,7 +25,7 @@ jobs:
         fetch-depth: 0
 
     - name: JSON lint
-      uses: actionshub/jsonlint@main
+      uses: actionshub/yamllint@main
 
     - name: YAML lint
       uses: actionshub/yamllint@main
