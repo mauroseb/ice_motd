@@ -23,3 +23,5 @@ Add the recipe ```recipe[ice_motd]``` to the run_list.
 ## TODO
 
 * Add Kitchen YAML for Azure and GCP.
+
+* Finalize CI/CD pipelines
