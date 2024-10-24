@@ -3,8 +3,14 @@ driver:
   privileged: true
   product_name: <%= ENV['CHEF_PRODUCT_NAME'] || 'chef' %>
   chef_version: <%= ENV['CHEF_VERSION'] || 'current' %>
+  channel: stable
   chef_license: accept-no-persist
   api_retries: 3
+  install_strategy: once
+  enforce_idempotency: <%= ENV['ENFORCE_IDEMPOTENCY'] || true %>
+  multiple_converge: <%= ENV['MULTIPLE_CONVERGE'] || 2 %>
+  log_level: <%= ENV['CHEF_LOG_LEVEL'] || 'auto' %>
+  deprecations_as_errors: true
 
 provisioner:
   name: dokken
