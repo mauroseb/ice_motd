@@ -45,9 +45,7 @@ jobs:
         CHEF_LICENSE: accept-silent
 
     - name: Run unit tests with ChefSpec
-      run: chef exec rspec --format RspecJunitFormatter spec/
-
- spec/
+      run: chef exec rspec spec/
       env:
         CHEF_LICENSE: accept-silent
 
