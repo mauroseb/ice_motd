@@ -19,7 +19,7 @@ Add the recipe ```recipe[ice_motd]``` to the run_list.
 ```ruby
 
    default['ice_motd']['footer'] = [
-     'Footer sample line'
+     'Watch your step!'
    ]
 
 ```
