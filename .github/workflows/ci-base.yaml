@@ -8,6 +8,7 @@ on:
 jobs:
   ice_motd_full:
     runs-on: ubuntu-latest
+    name: kitchen
     strategy:
       matrix:
         os:
