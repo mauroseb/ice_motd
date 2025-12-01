@@ -14,6 +14,7 @@ driver:
 
 provisioner:
   name: dokken
+  policy_group: kitchen
 
 transport:
   name: dokken
