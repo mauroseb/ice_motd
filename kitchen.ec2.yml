@@ -31,6 +31,9 @@ transport:
   connection_retries: 5
   username: centos
 
+provisioner:
+  policy_group: kitchen
+  
 verifier:
   name: inspec
 
