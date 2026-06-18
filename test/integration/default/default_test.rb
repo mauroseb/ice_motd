@@ -8,4 +8,3 @@ describe file('/etc/motd') do
   its('content') { should match(/PROD/) }
   its('content') { should match(/Footer sample line/) }
 end
- 
