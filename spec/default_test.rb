@@ -11,7 +11,7 @@ describe 'ice_motd::default' do
   let(:chef_run) do
     ChefSpec::SoloRunner.new(platform: 'centos', version: '8') do |node|
       # Custom attributes not provided by Fauxhai
-      node.override['environment'] = 'Production'
+      node.default['policy_group'] = 'prod'
       node.default['chef_server_url'] = 'infra-chefspec-01.a2-01.local'
       node.default['business_line'] = 'Cloud Services'
       node.default['business_owner'] = 'Mauro Oddi'
