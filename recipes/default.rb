@@ -17,7 +17,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-# Set motd content
+# Set motd content in linux
 
 unless platform_family?('rhel', 'fedora', 'amazon', 'debian')
   raise "ERROR: #{cookbook_name} not supported for #{node['platform_family']}"
