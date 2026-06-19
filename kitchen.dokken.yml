@@ -27,6 +27,15 @@ platforms:
 - name: centos-8
   driver:
     image: dokken/centos-8
+- name: centos-9
+  driver:
+    image: dokken/centos-9
+- name: ubuntu-2204
+  driver:
+    image: dokken/ubuntu-2204
+- name: debian-12
+  driver:
+    image: dokken/debian-12
 
 suites:
 - name: default
@@ -42,5 +51,9 @@ suites:
     post_destroy:
     - podman volume prune -f
   attributes:
-    chef_server_url: 'infra-01.a2-01.local'
-    environment: 'Production'
+    chef_server_url: 'infra-testkitchen-01.a2-01.local'
+    chef_environment: 'Production'
+    policy_group: 'prod'
+    policy_name: 'ice_linux_base'
+    business_line: 'Cloud Services'
+    business_owner: 'Mauro Oddi'

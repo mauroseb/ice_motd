@@ -2,9 +2,12 @@
 
 This file is used to list changes made in each version of the ice_motd cookbook.
 
+## 0.1.1
+
+  - Added EC2 properties.
+
+
 ## 0.1.0
 
-Initial release.
+  - Initial release.
 
-- change 0
-- change 1

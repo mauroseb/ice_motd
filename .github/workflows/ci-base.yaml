@@ -12,7 +12,10 @@ jobs:
     strategy:
       matrix:
         os:
-        - centos-8
+        - centos-9
+        - debian-12
+        - ubuntu-2204
+        - rockylinux-8
         suite:
         - default
     continue-on-error: true
@@ -46,7 +49,7 @@ jobs:
         CHEF_LICENSE: accept-silent
 
     - name: Run unit tests with ChefSpec
-      run: chef exec rspec spec/
+      run: chef exec rspec spec/*_test.rb
       env:
         CHEF_LICENSE: accept-silent
 

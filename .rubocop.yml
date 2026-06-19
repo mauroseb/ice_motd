@@ -1,0 +1,3 @@
+AllCops:
+  TargetChefVersion: 19.0
+  TargetRubyVersion: 3.4.8

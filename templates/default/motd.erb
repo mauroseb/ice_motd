@@ -19,13 +19,15 @@
   LAST CLIENT RUN :  <%= Time.at(node['ohai_time']) %>
   IP ADDRESS      :  <%= node['ipaddress'] %>
   UPTIME          :  <%= node['uptime'] %>
-  ENVIRONMENT     :  <% if node['environment'].downcase == 'production' %>[1;31m<% else %>[1;32m<% end %><%= node['environment'].upcase %>[0m
   OS VERSION      :  <%= node['os_release']['pretty_name'] %>
   NODE ARCH       :  <%= node['kernel']['machine'] %>
   KERNEL          :  <%= node['kernel']['release'] %>
 <% if node['dmi'].attribute?('bios') %>
   HARDWARE        :  <%= node['dmi']['bios']['vendor'] %>
+  MODEL           :  <%= node['dmi']['system']['product_name'] %>
 <% end %>
+  ENVIRONMENT     :  <% if node['policy_group'].downcase == 'prod' %>[1;31m<% else %>[1;32m<% end %><%= node['policy_group'].upcase %>[0m
+  POLICY NAME     :  <%= node['policy_name'] %>
 
 <% if node.attribute?('ec2') %>
 *********************************************************************
@@ -33,9 +35,21 @@
 
   IMAGE           :  <%= node['ec2']['ami_id'] %>
   INSTANCE        :  <%= node['ec2']['instance_id'] %>
+  LOCATION        :  <%= node['ec2']['region'] %>
   SIZE            :  <%= node['ec2']['instance_type'] %>
   PUBLIC IP       :  <%= node['ec2']['public_ipv4'] %>
   PRIVATE IP      :  <%= node['ec2']['local_ipv4'] %>
+
+<% end %>
+<% if node.attribute?('azure') %>
+*********************************************************************
+  MS AZURE INSTANCE DETAILS
+
+  DEPLOYMENT      :  <%= node['azure']['deployment_id'] %>
+  LOCATION        :  <%= node['azure']['location_pretty'] %>
+  SIZE            :  <%= node['azure']['instance_type'] %>
+  PUBLIC IP       :  <%= node['azure']['public_ipv4'] %>
+  PRIVATE IP      :  <%= node['azure']['local_ipv4'] %>
 
 <% end %>
 <% if node['ice_motd']['footer'].kind_of?(Array) %>
