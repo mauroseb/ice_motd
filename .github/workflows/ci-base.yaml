@@ -24,7 +24,7 @@ jobs:
       run: echo "New event created by user ${{ github.event.pull_request.user.login }}."
 
     - name: check out code
-      uses: actions/checkout@v4
+      uses: actions/checkout@v7
       with:
         fetch-depth: 0
 
