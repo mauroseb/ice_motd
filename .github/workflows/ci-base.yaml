@@ -40,6 +40,8 @@ jobs:
     - name: Chef install
       uses: actionshub/chef-install@main
       with:
+        license: ${{ secrets.CHEF_LICENSE_ID }}
+        chefDownloadUrl: chefdownload-commercial.chef.io
         channel: current
         project: chef-workstation
 
