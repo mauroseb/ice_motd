@@ -27,7 +27,7 @@ driver:
 
 provisioner:
   name: ec2
-  policy_group: 'prod'
+  policy_group: prod
 
 transport:
   ssh_key: ~/.ssh/id_rsa_aws
@@ -35,9 +35,6 @@ transport:
   connection_retries: 5
   username: centos
 
-provisioner:
-  policy_group: kitchen
-  
 verifier:
   name: inspec
 
